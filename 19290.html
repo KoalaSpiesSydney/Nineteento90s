@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.typekit.net/lfp3llb.css">
+  <title>Clovelly Kirtan</title>
+
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: "pulpo-rust-50", serif;
+      font-weight: 400;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      font-family: "pulpo-rust-100", serif;
+      font-size: 3rem;
+      letter-spacing: 40px;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .site-content {
+      text-align: center;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Song title - glowing + movement */
+    #song-title {
+      color: #f8f8b0;
+      opacity: 0.95;
+      font-size: 4.5rem;
+      text-transform: lowercase;
+      letter-spacing: 12px;
+      margin: 30px 0;
+      display: inline-block;
+      transition: all 0.4s ease;
+      animation: glowPulse 1.2s ease-in-out infinite;
+      font-family: "pulpo-rust-100", serif;
+    }
+
+    /* Enhance glowing pulse */
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow: 0 0 20px #ff0040, 0 0 40px #ff6600, 0 0 60px #ffcc00;
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        text-shadow: 0 0 35px #00ffff, 0 0 70px #1e90ff, 0 0 100px #ffffff;
+        transform: scale(1.05) rotate(-1deg);
+      }
+    }
+
+    /* individual letters moving */
+    #song-title span {
+      display: inline-block;
+      animation: waveFloat 0.9s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    #song-title span:nth-child(n) {
+      animation-delay: calc(0.05s * var(--i));
+    }
+
+    @keyframes waveFloat {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-10px); }
+      50% { transform: translateY(5px); }
+      75% { transform: translateY(-5px); }
+    }
+
+    /* Playlist styling */
+    .playlist {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 5px;
+      max-width: 400px;
+      width: 100%;
+      opacity: 80%;
+    }
+.track {
+  cursor: pointer;
+  width: 90%;
+  max-width: 300px;
+  text-align: center;
+  padding: 10px 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: "pulpo-rust-100", serif;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  color: #fff;
+  backdrop-filter: blur(5px);
+}
+
+.track:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.track.playing {
+  background: #ee84f7;
+  color: #111;
+  transform: scale(1.05);
+}
+
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      padding: 25px;
+      font-family: "pulpo-rust-100", serif;
+    }
+
+    footer nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+    }
+
+    footer nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 5px;
+      font-size: 1.2rem;
+      transition: 0.3s;
+      text-shadow: 0 0 8px rgba(255, 200, 255, 0.4),
+                   0 0 16px rgba(150, 200, 255, 0.3);
+    }
+
+    footer nav a:hover {
+      text-shadow: 0 0 12px rgba(255, 160, 255, 0.8),
+                   0 0 25px rgba(100, 180, 255, 0.6);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 700px) {
+      #song-title {
+        font-size: 2.2rem;
+        letter-spacing: 5px;
+      }
+      .track {
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+      }
+      footer nav {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>nineteen to 90s</header>
+
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="19290.mp4" type="video/mp4">
+  </video>
+
+  <div class="site-content">
+    <h1 id="song-title">19 2 90s</h1>
+
+    <audio id="audio-player" controls style="display:none"></audio>
+
+    <section class="playlist">
+      <div class="track" data-src="betterinflatable.mp3"><h2>Better. Inflatable.</h2></div>
+      <div class="track" data-src="MyloverusesChatgpt.mp3"><h2>My. Lover. Uses. Chatgpt.</h2></div>
+      <div class="track" data-src="Iamadrummingmonkey.mp3"><h2>Drumming. Monkey.</h2></div>
+      <div class="track" data-src="Shoot.mp3"><h2>Hot. Tamales!</h2></div>
+    </section>
+
+    <footer>
+      <nav>
+        <a href="Kssabout.index.html">Up Coming Gigs</a>
+        <a href="KSScontact.index.html">Contact</a>
+      </nav>
+      <p>&copy; 2025 Koala Spies Sydney<br>koalaspies@duck.com</p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const audioPlayer = document.getElementById('audio-player');
+      const tracks = document.querySelectorAll('.track');
+      const title = document.getElementById('song-title');
+      let currentTrackIndex = -1;
+
+      function wrapLetters(text) {
+        return text.split("").map((ch, i) =>
+          `<span style="--i:${i+1}">${ch}</span>`
+        ).join("");
+      }
+
+      function playTrack(index) {
+        const track = tracks[index];
+        const trackName = track.textContent.trim();
+
+        // toggle pause
+        if (currentTrackIndex === index && !audioPlayer.paused) {
+          audioPlayer.pause();
+          track.classList.remove('playing');
+          return;
+        }
+
+        // switch tracks
+        tracks.forEach(t => t.classList.remove('playing'));
+        audioPlayer.src = track.dataset.src;
+        audioPlayer.play().catch(err => console.error("Playback error:", err));
+
+        currentTrackIndex = index;
+        track.classList.add('playing');
+
+        // smooth fade & update title
+        title.style.opacity = 0;
+        setTimeout(() => {
+          title.innerHTML = wrapLetters(trackName);
+          title.style.opacity = 1;
+        }, 300);
+      }
+
+      tracks.forEach((track, i) => {
+        track.addEventListener('click', () => playTrack(i));
+      });
+
+      audioPlayer.addEventListener('ended', () => {
+        if (currentTrackIndex >= 0) {
+          tracks[currentTrackIndex].classList.remove('playing');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
