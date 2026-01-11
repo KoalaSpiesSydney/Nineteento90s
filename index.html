@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://use.typekit.net/lfp3llb.css">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
   <title>Nineteento90s</title>
 
   <style>
@@ -16,13 +18,29 @@
       overflow-x: hidden;
     }
 
-    header {
-      text-align: center;
-      padding: 20px;
-      font-family: "pulpo-rust-100", serif;
-      font-size: 3rem;
-      letter-spacing: 40px;
-    }
+  
+    /* Special Elite + Rainbow for Header */
+.ninety-header {
+  font-family: "Special Elite", serif !important;
+  font-size: 4rem;
+  letter-spacing: 20px; /* adjust if needed */
+  text-transform: none;
+  text-align: center;
+  padding: 15px;
+
+  background: linear-gradient(
+    90deg,
+    #ff004c,
+    #ff8a00,
+    #ffee00,
+    #32ff00,
+    #00c8ff,
+    #7a00ff
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 
     #bg-video {
       position: fixed;
@@ -254,14 +272,16 @@
 </head>
 
 <body>
-  <header>nineteen to 90s</header>
+  <header class="ninety-header">nineteen to 90s</header>
+
+
 
   <video id="bg-video" autoplay muted loop playsinline>
     <source src="19290.mp4" type="video/mp4">
   </video>
 
   <div class="site-content">
-    <h1 id="song-title">19 2 90s</h1>
+    <h1 id="song-title"> 19290s</h1>
 
     <audio id="audio-player" controls style="display:none"></audio>
 
@@ -341,5 +361,4 @@
   </script>
 </body>
 </html>
-
 
